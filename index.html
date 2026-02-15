@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Pioneers | Industrial Solutions Provider</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/logo1.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004d99;
+            --secondary: #00c7ff;
+            --accent: #00d4aa;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --header-height: 80px;
+            --header-scrolled-height: 70px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== HEADER STYLES ==================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            height: var(--header-scrolled-height);
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo-container img {
+            height: 45px;
+        }
+
+        .logo-container .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+            background: rgba(0, 102, 204, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Active link indicator */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Dropdown Menu */
+        nav ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+	    flex-direction: column; 
+	    gap: 0.1rem;
+            min-width: 220px;
+            padding: 15px 0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        nav ul li:hover ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        nav ul li ul li {
+            width: 100%;
+        }
+
+        nav ul li ul li a {
+            display: block;
+            padding: 12px 20px;
+            border-radius: 0;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        nav ul li ul li a:hover {
+            background: rgba(0, 102, 204, 0.08);
+            padding-left: 25px;
+        }
+
+        /* Login Button Special Style */
+        nav ul li a.btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 20px;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        nav ul li a.btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+        }
+
+        nav ul li a.btn::after {
+            display: none;
+        }
+
+        /* ==================== LOADING SCREEN ==================== */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loading-screen.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .heartbeat-logo {
+            width: 120px;
+            height: 120px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            20% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* ==================== BACK TO TOP BUTTON ==================== */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            color: white;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .hero-content.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        /* Hero Navigation Arrows */
+        .hero-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+        .hero-arrow {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+
+        /* Slider Dots */
+        .slider-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .slider-dot::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .slider-dot:hover::after {
+            opacity: 1;
+        }
+
+        /* ==================== SECTIONS COMMON ==================== */
+        .divisions-section,
+        .about-section,
+        .why-choose {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==================== DIVISION CARDS ==================== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .division-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .division-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .division-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        /* ==================== BUTTON STYLES ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 35px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 102, 204, 0.3);
+        }
+
+        /* ==================== WHY CHOOSE US ==================== */
+        .why-choose {
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border-top: 4px solid transparent;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .benefit-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Colorful border tops for benefit cards */
+        .benefit-card:nth-child(1) { border-top-color: #0066cc; }
+        .benefit-card:nth-child(2) { border-top-color: #00c7ff; }
+        .benefit-card:nth-child(3) { border-top-color: #00d4aa; }
+        .benefit-card:nth-child(4) { border-top-color: #ff6b6b; }
+        .benefit-card:nth-child(5) { border-top-color: #ffd166; }
+        .benefit-card:nth-child(6) { border-top-color: #118ab2; }
+        .benefit-card:nth-child(7) { border-top-color: #9d4edd; }
+        .benefit-card:nth-child(8) { border-top-color: #f8961e; }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .benefit-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== FOOTER STYLES ==================== */
+        .modern-footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 5% 40px;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-center {
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-center p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-logo:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-info {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info p {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info i {
+            width: 25px;
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+            }
+            
+            .logo-container {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                margin-top: 120px;
+                height: 80vh;
+                min-height: 600px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .slider-nav {
+                left: 20px;
+                bottom: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-info {
+                border-left: none;
+                border-top: 4px solid var(--primary);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                margin-top: 140px;
+                min-height: 500px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .divisions-section,
+            .why-choose {
+                padding: 60px 20px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .benefit-card {
+                padding: 30px 20px;
+            }
+            
+            .hero-arrows {
+                padding: 0 20px;
+            }
+            
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="Images/logo1.png" alt="Dynamic Pioneers Logo" class="heartbeat-logo">
+        <div class="loading-text">LOADING...</div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo-container">
+            <a href="index.html"><img src="Images/logo1.png" alt="Dynamic Pioneers Logo"></a>
+            <span class="logo-text">Dynamic Pioneers</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Shop Now <i class="fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="gas_division.html?shop=gas"><i class="fas fa-oil-well"></i> Oil Field Solutions</a></li><br>
+                        <li><a href="construction.html?shop=construction"><i class="fas fa-hard-hat"></i> Construction Solutions</a></li><br>
+                        <li><a href="agriculture.html"><i class="fas fa-tractor"></i> Agriculture Solutions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#divisions">Divisions</a></li>
+                <li><a href="#why-choose">Why Us</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slide active" style="background-image: url('Images/backdrop.jpg');">
+            <div class="hero-content active">
+                <h1>Your Trusted Partner for Premium Industrial Solutions</h1>
+                <p>Global sourcing, unmatched quality, and guaranteed satisfaction for all your industrial needs</p>
+                <a href="#divisions" class="btn">Explore Solutions <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('Images/abackdrop.jpg');">
+            <div class="hero-content">
+                <h1>Seamless Global Logistics & Supply Chain</h1>
+                <p>Efficient international sourcing and delivery to keep your operations running smoothly</p>
+                <a href="#about" class="btn">Learn More <i class="fas fa-book-open"></i></a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('Images/gggg.jpg');">
+            <div class="hero-content">
+                <h1>Oil & Gas Industry Leadership</h1>
+                <p>Premium supplies and innovative solutions for the energy sector</p>
+                <a href="gas_division.html" class="btn">Shop Now <i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('Images/DEbackdrop.jpg');">
+            <div class="hero-content">
+                <h1>Construction Excellence</h1>
+                <p>High-quality materials for superior infrastructure development</p>
+                <a href="construction.html" class="btn">View Products <i class="fas fa-hard-hat"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-arrows">
+            <span class="hero-arrow" onclick="prevSlide()">&#10094;</span>
+            <span class="hero-arrow" onclick="nextSlide()">&#10095;</span>
+        </div>
+
+        <div class="slider-nav">
+            <span class="slider-dot active" onclick="goToSlide(0)"></span>
+            <span class="slider-dot" onclick="goToSlide(1)"></span>
+            <span class="slider-dot" onclick="goToSlide(2)"></span>
+            <span class="slider-dot" onclick="goToSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- Divisions Section -->
+    <section id="divisions" class="divisions-section fade-in">
+        <div class="section-header">
+            <h2>Our Specialized Divisions</h2>
+            <p>Comprehensive solutions for every sector with industry-leading quality and expertise</p>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- Construction Division -->
+            <div class="division-card">
+                <div class="card-image">
+                    <img src="Images/iStock-1376528807_cementtrowel.avif" alt="Construction Division">
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Construction Division</h3>
+                    <p>Premium construction materials and equipment for residential, commercial, and infrastructure projects. Quality guaranteed for superior results.</p>
+                    <a href="construction.html" class="btn">Explore Products</a>
+                </div>
+            </div>
+
+            <!-- Oil & Gas Division -->
+            <div class="division-card">
+                <div class="card-image">
+                    <img src="Images/bbbackdrop.jpg" alt="Oil & Gas Division">
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-oil-well"></i>
+                    </div>
+                    <h3>Oil & Gas Division</h3>
+                    <p>Comprehensive solutions for upstream, midstream, and downstream operations with industry-certified equipment and safety standards.</p>
+                    <a href="gas_division.html?shop=gas" class="btn">View Solutions</a>
+                </div>
+            </div>
+
+            <!-- Agriculture Division -->
+            <div class="division-card">
+                <div class="card-image">
+                    <img src="Images/bbackdrop.jpg" alt="Agriculture Division">
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Agriculture Division</h3>
+                    <p>Advanced agricultural supplies, irrigation systems, and farming equipment to maximize productivity and sustainability.</p>
+                    <a href="agriculture.html" class="btn">Discover More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="divisions-section fade-in" style="background: white;">
+        <div class="section-header">
+            <h2>Excellence in Industrial Solutions</h2>
+            <p>Driving progress with innovation, quality, and unwavering commitment to customer success</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="division-card">
+                <div class="card-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Quality Assurance</h3>
+                <p>Rigorous quality control and sourcing from certified global manufacturers ensures superior product performance and durability.</p>
+            </div>
+
+            <div class="division-card">
+                <div class="card-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Global Logistics</h3>
+                <p>Efficient international supply chain management for timely delivery and competitive pricing across all markets.</p>
+            </div>
+
+            <div class="division-card">
+                <div class="card-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Expert Support</h3>
+                <p>Industry-specialized technical support and consultation for optimal solution implementation and project success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose" class="why-choose">
+        <div class="section-header">
+            <h2>Why Choose Dynamic Pioneers?</h2>
+            <p>Discover the competitive advantages that set us apart as your preferred industrial partner</p>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3>Global Sourcing Network</h3>
+                <p>Premium materials from certified international manufacturers with diverse supply chain options</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>Sector Expertise</h3>
+                <p>Specialized knowledge across Oil & Gas, Construction, and Agriculture sectors with tailored solutions</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Efficient Logistics</h3>
+                <p>Optimized supply chain for timely delivery and cost savings with real-time tracking</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Quality Assurance</h3>
+                <p>Rigorous testing and certification for guaranteed performance and durability standards</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Emergency Support</h3>
+                <p>Round-the-clock technical assistance and emergency supply services to minimize downtime</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h3>Custom Solutions</h3>
+                <p>Bespoke product packages and tailored sourcing services for unique project requirements</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Partnership Approach</h3>
+                <p>Long-term collaborative relationships focused on your success and growth objectives</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon-wrapper">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Value Optimization</h3>
+                <p>Cost-effective solutions without compromising quality for maximum return on investment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-center">
+                <div class="footer-logo">Dynamic Pioneers</div>
+                <p>Your trusted partner for industrial excellence and innovative solutions</p>
+                <div class="socials">
+                    <a href="https://www.facebook.com/profile.php?id=61556322989012" target="_blank" rel="noopener noreferrer" class="social-logo">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/westar_ios/" target="_blank" rel="noopener noreferrer" class="social-logo">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-logo">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-logo">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +592 611-6871<br>
+                   <i class="fas fa-mobile-alt"></i> +152 620-4050</p>
+                <p><i class="fas fa-map-marker-alt"></i> #9 Malgre Tout Public Road,<br>West Bank Demerara, Guyana</p>
+                <p><i class="fas fa-envelope"></i> info@dynamicpioneers.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Dynamic Pioneers Ltd. All Rights Reserved. <span>| Designed for Excellence</span></p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('loaded');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Enhanced Slider Functionality
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const contents = document.querySelectorAll('.hero-content');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            dots.forEach(dot => {
+                dot.style.transition = 'all 0.5s ease';
+            });
+            
+            slides[index].classList.add('active');
+            contents[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentIndex = index;
+            
+            setTimeout(() => {
+                dots.forEach(dot => {
+                    dot.style.transition = '';
+                });
+            }, 500);
+        }
+        
+        function nextSlide() {
+            let nextIndex = (currentIndex + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+        
+        function prevSlide() {
+            let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(prevIndex);
+        }
+        
+        function goToSlide(index) {
+            showSlide(index);
+        }
+        
+        // Auto-advance slides
+        let slideInterval = setInterval(nextSlide, 6000);
+        
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        hero.addEventListener('mouseleave', () => {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 6000);
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > heroSection.offsetHeight) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll Animations for Benefit Cards
+        const benefitCards = document.querySelectorAll('.benefit-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('reveal');
+                    }, index * 100);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        benefitCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        console.log("<<Source Coded by Joshua's Labs est 2024>>");
+    </script>
+</body>
+</html>

@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil & Gas Products | Dynamic Pioneers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/logo1.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b0000;
+            --primary-dark: #660000;
+            --secondary: #ff6b35;
+            --accent: #ffd700;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --gradient: linear-gradient(135deg, #8b0000 0%, #ff6b35 100%);
+            --shadow: 0 20px 40px rgba(139, 0, 0, 0.15);
+            --shadow-hover: 0 30px 60px rgba(139, 0, 0, 0.25);
+            --radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(139, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Dropdown */
+        nav ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        nav ul li:hover ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Search Bar */
+        .modern-search {
+            position: relative;
+            width: 300px;
+        }
+
+        .modern-search input {
+            width: 100%;
+            padding: 0.875rem 1.25rem 0.875rem 3rem;
+            border: 2px solid rgba(139, 0, 0, 0.2);
+            border-radius: 50px;
+            background: white;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .modern-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .modern-search i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        /* Hero Section with Ken Burns Effect */
+        .hero {
+            height: 70vh;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                        url('Images/panorama-offshore-jack-up-rig-in-the-middle-of-the-sea-at-sunset-generative-ai-free-photo.jpg') center/cover no-repeat;
+            animation: kenburns 20s infinite alternate;
+        }
+
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* Filters Section */
+        .filters-section {
+            padding: 3rem 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .filter-card {
+            background: white;
+            padding: 1.8rem 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .filter-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .filter-card.active {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .filter-card i {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .filter-card.active i {
+            color: white;
+        }
+
+        .filter-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 3rem 5%;
+            background: var(--light);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(139, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 1.8rem;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            height: 3.6rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            height: 4.5rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.1);
+        }
+
+        .add-to-cart-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Quick View Modal */
+        .quick-view-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5% 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-center {
+            text-align: center;
+            flex: 1;
+        }
+
+        .footer-center p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .socials img {
+            width: 35px;
+            height: 35px;
+            transition: var(--transition);
+            filter: brightness(0) invert(1);
+        }
+
+        .socials img:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .contact-info {
+            text-align: right;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            nav ul li a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .modern-search {
+                width: 100%;
+                max-width: 400px;
+                order: 3;
+                margin-top: 1rem;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .filters-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                text-align: center;
+                border-left: none;
+                border-top: 2px solid rgba(255, 255, 255, 0.1);
+                padding-left: 0;
+                padding-top: 2rem;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card {
+                margin: 0 0.5rem;
+            }
+            
+            .filters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="Images/logo1.png" alt="Dynamic Pioneers"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li>
+                    <a href="#"><i class="fas fa-oil-well"></i> Oil & Gas</a>
+                    <ul>
+                        <li><a href="#" data-filter="tools"><i class="fas fa-tools"></i> Tools</a></li>
+                        <li><a href="#" data-filter="lubricants"><i class="fas fa-oil-can"></i> Lubricants</a></li>
+                        <li><a href="#" data-filter="pipes"><i class="fas fa-pipe"></i> Pipes</a></li>
+                        <li><a href="#" data-filter="welding"><i class="fas fa-wrench"></i> Welding</a></li>
+                        <li><a href="#" data-filter="fittings"><i class="fas fa-cog"></i> Fittings</a></li>
+                        <li><a href="#" data-filter="safety"><i class="fas fa-shield-alt"></i> Safety</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-industry"></i> Sectors</a>
+                    <ul>
+                        <li><a href="gas_division.html" class="active"><i class="fas fa-oil-well"></i> Oil & Gas</a></li>
+                        <li><a href="construction.html"><i class="fas fa-hard-hat"></i> Construction</a></li>
+                        <li><a href="agriculture.html"><i class="fas fa-tractor"></i> Agriculture</a></li>
+                    </ul>
+                </li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+        </nav>
+        <div class="modern-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search oil & gas products...">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>Dynamic Pioneers Oil & Gas</h1>
+            <p>Premium equipment and supplies for the energy industry</p>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <h2 class="section-title">Oil & Gas Equipment</h2>
+        <p class="section-subtitle">Browse our premium oil & gas products by category</p>
+        <div class="filters-grid">
+            <div class="filter-card active" data-filter="all">
+                <i class="fas fa-layer-group"></i>
+                <h3>All Products</h3>
+                <p>Complete oil & gas catalog</p>
+            </div>
+            <div class="filter-card" data-filter="tools">
+                <i class="fas fa-tools"></i>
+                <h3>Tools</h3>
+                <p>Specialized equipment</p>
+            </div>
+            <div class="filter-card" data-filter="lubricants">
+                <i class="fas fa-oil-can"></i>
+                <h3>Lubricants</h3>
+                <p>Industrial lubricants</p>
+            </div>
+            <div class="filter-card" data-filter="pipes">
+                <i class="fas fa-pipe"></i>
+                <h3>Pipes</h3>
+                <p>Seamless line pipes</p>
+            </div>
+            <div class="filter-card" data-filter="welding">
+                <i class="fas fa-wrench"></i>
+                <h3>Welding</h3>
+                <p>Welding supplies</p>
+            </div>
+            <div class="filter-card" data-filter="fittings">
+                <i class="fas fa-cog"></i>
+                <h3>Fittings</h3>
+                <p>Fittings & flanges</p>
+            </div>
+            <div class="filter-card" data-filter="safety">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Safety</h3>
+                <p>Safety equipment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="section-header">
+            <h2>Featured Oil & Gas Products</h2>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content" id="modalContent">
+            <!-- Modal content will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-center">
+                <p>&copy; 2025 Dynamic Pioneers. All Rights Reserved.</p>
+                <div class="socials">
+                    <a href="#"><img src="Images/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="Images/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="Images/whatsapp.png" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p>Tel: +592 611-6871 <br> #9 Malgre Tout Public Road, West Bank Demerara</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Powering Progress | Dynamic Solutions for Energy Industry</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate database (in real app, this would be server-side)
+        let productsDatabase = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Sample oil & gas products
+        const oilGasProducts = [
+            {
+                id: 1,
+                name: "Industrial Pipe Wrench Set",
+                category: "tools",
+                description: "Professional-grade pipe wrench set for oil field operations. Durable construction for heavy-duty use.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 45,
+                dateAdded: "2024-01-15"
+            },
+            {
+                id: 2,
+                name: "High-Temperature Lubricant",
+                category: "lubricants",
+                description: "Specialized high-temperature lubricant for oil rig machinery. Withstands extreme conditions.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 120,
+                dateAdded: "2024-01-10"
+            },
+            {
+                id: 3,
+                name: "Seamless Steel Line Pipe",
+                category: "pipes",
+                description: "API 5L seamless steel pipe for oil and gas transmission. Available in various diameters.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 80,
+                dateAdded: "2024-01-20"
+            },
+            {
+                id: 4,
+                name: "Industrial Welding Machine",
+                category: "welding",
+                description: "Heavy-duty welding machine for pipeline construction and repair. 400 amp capacity.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 25,
+                dateAdded: "2024-01-18"
+            },
+            {
+                id: 5,
+                name: "Steel Pipe Fittings",
+                category: "fittings",
+                description: "High-pressure steel fittings for oil and gas pipelines. Various sizes available.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: false,
+                stock: 200,
+                dateAdded: "2024-01-05"
+            },
+            {
+                id: 6,
+                name: "Industrial Fire Extinguisher",
+                category: "safety",
+                description: "Large capacity fire extinguisher for oil rig safety. ABC rated for all fire types.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 60,
+                dateAdded: "2024-01-12"
+            },
+            {
+                id: 7,
+                name: "Gas Detection System",
+                category: "safety",
+                description: "Multi-gas detection system for hazardous environments. Real-time monitoring.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: false,
+                stock: 30,
+                dateAdded: "2024-01-08"
+            },
+            {
+                id: 8,
+                name: "Valve Assembly Kit",
+                category: "fittings",
+                description: "Complete valve assembly kit for pipeline control systems. Various pressure ratings.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+                featured: true,
+                stock: 50,
+                dateAdded: "2024-01-22"
+            }
+        ];
+
+        // Initialize products from localStorage or sample data
+        function initializeProducts() {
+            const storedProducts = localStorage.getItem('oilGasProducts');
+            if (storedProducts) {
+                productsDatabase = JSON.parse(storedProducts);
+            } else {
+                productsDatabase = [...oilGasProducts];
+                localStorage.setItem('oilGasProducts', JSON.stringify(productsDatabase));
+            }
+        }
+
+        // Render products
+        function renderProducts(products = productsDatabase) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('data-category', product.category);
+                card.setAttribute('data-id', product.id);
+                
+                card.innerHTML = `
+                    ${product.featured ? '<div class="product-badge">Featured</div>' : ''}
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-footer">
+                            <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event for quick view
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.add-to-cart-btn')) {
+                        showQuickView(product);
+                    }
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter products by category
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Search functionality
+        function searchProducts(query) {
+            const filtered = productsDatabase.filter(product =>
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase()) ||
+                getCategoryName(product.category).toLowerCase().includes(query.toLowerCase())
+            );
+            renderProducts(filtered);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            event.stopPropagation();
+            const product = productsDatabase.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show success animation
+            const btn = event.target.closest('.add-to-cart-btn');
+            btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+            btn.style.background = 'var(--accent)';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                btn.style.background = '';
+            }, 1500);
+        }
+
+        // Quick view modal
+        function showQuickView(product) {
+            const modal = document.getElementById('quickViewModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div style="padding: 2rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: var(--radius);">
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom: 1rem; color: var(--primary);">${product.name}</h2>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <span class="product-category">${getCategoryName(product.category)}</span>
+                            </div>
+                            <p style="margin-bottom: 1.5rem; color: var(--gray); line-height: 1.6;">${product.description}</p>
+                            <div style="margin-bottom: 1.5rem;">
+                                <div style="color: var(--gray); margin-top: 0.5rem;">
+                                    Stock: ${product.stock} units available
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                                <button class="add-to-cart-btn" onclick="addToCart(${product.id}); event.stopPropagation();">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="filter-card" onclick="closeModal()" style="padding: 0.875rem 1.75rem; background: transparent; border: 2px solid rgba(139, 0, 0, 0.2); color: var(--dark);">
+                                    <i class="fas fa-times"></i> Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+
+        // Helper functions
+        function getCategoryName(category) {
+            const categories = {
+                'tools': 'Industrial Tools',
+                'lubricants': 'Lubricants',
+                'pipes': 'Pipes',
+                'welding': 'Welding Supplies',
+                'fittings': 'Fittings & Flanges',
+                'safety': 'Safety Equipment'
+            };
+            return categories[category] || category;
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeProducts();
+            renderProducts();
+            
+            // Filter cards click events
+            document.querySelectorAll('.filter-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    filterProducts(card.dataset.filter);
+                });
+            });
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                searchProducts(e.target.value);
+            });
+            
+            // Navigation filter links
+            document.querySelectorAll('nav a[data-filter]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = link.dataset.filter;
+                    document.querySelectorAll('.filter-card').forEach(c => c.classList.remove('active'));
+                    document.querySelector(`.filter-card[data-filter="${filter}"]`).classList.add('active');
+                    filterProducts(filter);
+                    window.scrollTo({
+                        top: document.querySelector('.filters-section').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Close modal on outside click
+            document.getElementById('quickViewModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('quickViewModal')) {
+                    closeModal();
+                }
+            });
+            
+            // Highlight current sector in navigation
+            const currentLinks = document.querySelectorAll('nav a[href="gas_division.html"]');
+            currentLinks.forEach(link => {
+                link.closest('li').classList.add('active');
+            });
+        });
+
+        // Make functions available globally
+        window.addToCart = addToCart;
+        window.closeModal = closeModal;
+    </script>
+</body>
+</html>
